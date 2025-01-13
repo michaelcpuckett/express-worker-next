@@ -1,0 +1,35 @@
+import {
+  ExpressWorker,
+  ExpressWorkerRequest,
+  ExpressWorkerResponse,
+} from "@express-worker/app";
+import { useNextArchitecture } from "./NextArchitecture";
+
+interface FormDataWithArrayValue {
+  [key: `${string}[]`]: string[] | undefined;
+}
+
+interface FormDataWithStringValue {
+  [key: string]: string | undefined;
+}
+
+export type NormalizedFormData = FormDataWithArrayValue &
+  FormDataWithStringValue;
+
+export interface AdditionalRequestProperties {
+  query: Record<string, string>;
+  data: NormalizedFormData;
+}
+
+export function handleRequest(
+  handler: (
+    req: ExpressWorkerRequest & AdditionalRequestProperties,
+    res: ExpressWorkerResponse
+  ) => Promise<void>
+) {
+  return ExpressWorker.applyAdditionalRequestProperties<AdditionalRequestProperties>(
+    handler
+  );
+}
+
+export default useNextArchitecture;
