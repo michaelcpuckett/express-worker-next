@@ -8,10 +8,12 @@ import useMiddleware from "./Middleware";
 import useStaticFiles from "./StaticFiles";
 
 export function useNextArchitecture({
+  app,
   staticFiles,
   routes,
   PageShell,
 }: {
+  app: ExpressWorker;
   PageShell: React.ComponentType<any>;
   staticFiles: string[];
   routes: Record<
@@ -41,8 +43,6 @@ export function useNextArchitecture({
     self.clients.claim();
   });
 
-  const app = new ExpressWorker();
-
   // Apply `.data` and `.query` to the request object.
   useMiddleware(app);
 
@@ -54,6 +54,4 @@ export function useNextArchitecture({
 
   // Catch-all 404 handler.
   use404Handler(app, { PageShell, Component: routes["/404"]?.Component });
-
-  return app;
 }

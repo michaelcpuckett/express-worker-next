@@ -1,6 +1,6 @@
 {
   "name": "@express-worker/next",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Next.js-style architecture for ExpressWorker",
   "author": "Michael Puckett <michael@puckett.contact>",
   "license": "MIT",
