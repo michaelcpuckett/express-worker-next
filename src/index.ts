@@ -32,4 +32,4 @@ export function handleRequest(
   );
 }
 
-export default useNextArchitecture;
+export { useNextArchitecture };

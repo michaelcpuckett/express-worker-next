@@ -1,6 +1,6 @@
 {
   "name": "@express-worker/next",
-  "version": "1.1.0",
+  "version": "1.1.3",
   "description": "Next.js-style architecture for ExpressWorker",
   "author": "Michael Puckett <michael@puckett.contact>",
   "license": "MIT",
@@ -9,6 +9,7 @@
     "url": "https://github.com/michaelcpuckett/express-worker-next.git"
   },
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -22,6 +23,11 @@
   "targets": {
     "app": {
       "source": "./src/index.ts",
+      "distDir": "./dist",
+      "scopeHoist": false
+    },
+    "types": {
+      "source": "./src/index.ts",
       "distDir": "./dist"
     }
   },
@@ -31,7 +37,9 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@parcel/packager-ts": "^2.13.2",
     "@parcel/transformer-typescript-tsc": "^2.13.2",
+    "@parcel/transformer-typescript-types": "^2.13.2",
     "@types/react": "^19.0.6",
     "@types/react-dom": "^19.0.3",
     "http-server": "^14.1.1",
